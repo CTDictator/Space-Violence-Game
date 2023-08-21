@@ -1,0 +1,60 @@
+**** Space Violence **** (Title not yet decided)
+
+Idea: Flashy 2D mini-rts game where you try to conquer all the planets
+on the map against several other empires. The game starts with the 
+player and a few active empires in addition to many neutral worlds
+whose defenses are static. As time progresses, neutral worlds may
+decided to awake as a federated empire, awake as a new empire on
+their own, or willingly join an existing empire. Each planet 
+automatically generates ships which you can then send to reinforce one 
+of your own worlds or overpower the defenses of another. Ships match in 
+a 1 to 1 exchange and planets production capacity slows as it approaches 
+its maximum. Randomized planetary modifiers as well as prosperity affect 
+the rate of ships produced on each world. Conquering worlds reduces
+the conquered worlds prosperity. Holding onto a planet for a long time
+increases prosperity. The game is won when the player conquers all the
+worlds, and the game is lost when the player loses all their worlds. AI
+empires can win and lose the same way respectively.
+
+Goal: Conquer the entire star sector.
+
+Space: Literally space populated with randomly generated planets with
+defenses that are either static (neutral worlds) or growing (empire worlds)
+
+Components: Varying planets with modifiers and prosperity producing
+spaceships at a logarithmic rate up to its maximum. Planets can hold more
+than their maximum, but will not produce any ships. (Reinforcing worlds)
+
+Mechanics: Planetary spawn rate, planetary modifiers, prosperity, ai decision
+making, win and lose conditions, randomized and spaced out planets, neutral
+worlds awakening into federated, single empire, or joining empire.
+(Optional) Planets orbit suns, customize size of the map and starting empires.
+Select your own world with a right click then right click a target world to 
+send half your defense as a fleet of ships.
+
+Rules: Empire is eliminated when they lose their last planet. Empire wins when
+there are no other empires left. Spaceships exchange 1:1 against planets
+defenses. Planets generate ships up to their maximum capacity depending on their
+modifiers and prosperity. Planets can hold more than their maximum capacity.
+Planets switch owners when their defenses reach zero and an enemy empire sends
+at least 1 more. Can send half a planets defenses as a fleet of ships to any
+world, either attacking a neutral, enemy empire world, or reinforce your own.
+
+Art: Simple glowing polygon triangles to represent ships. Static space
+background a few twinkling star effects and optionally nebula gas. Planets
+will have varying sprites depending on the world type it is generated with.
+Earth-like, Desert, Icey, Watery, Rockey, Molten, Gaseous, etc. Planet sprite
+will be highlighted in the empires colours or grey to denote neutrality. UI
+number displays its defenses for ease of access. Selecting your worlds reveals
+its modifiers, prosperity, its production rate, its current defenses and its
+maximum defenses on a separate UI, likely on the top or bottom. Optionally,
+planets may have a randomly generated name.
+
+Sounds: Scifi-retro sound style, sounding similar to older space games. Music
+might sound similar to Sins of a Solar Empire or Faster than Light for its
+theme. Sending fleets, passive planetary sounds, and collision sounds when
+fleets attack other planets too.
+
+Release Type: Free-Open source WebGL game on Unity Play. This is just more
+practice for me, this time creating something more complex than my previous
+games.
