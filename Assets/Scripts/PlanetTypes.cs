@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 // Sorted by habitability.
-enum PlanetType
+public enum PlanetTypes
 {
     terrestrial,
     oceanic,
@@ -11,5 +7,6 @@ enum PlanetType
     rocky,
     icey,
     gaseous,
+    molten,
     max_planet_types
 }

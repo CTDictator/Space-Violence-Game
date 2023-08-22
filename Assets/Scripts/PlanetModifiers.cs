@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 // List of planet modifiers
-enum PlanetModifier
+public enum PlanetModifiers
 {
     none,
     low_gravity,

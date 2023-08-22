@@ -99,9 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ddc31902b28d46428513934744655d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxShipCapacity: 100
-  totalShips: 10
   baseProductionRate: 1
+  maxShipCapacity: 0
+  totalShips: 10
 --- !u!114 &1872504297255405127
 MonoBehaviour:
   m_ObjectHideFlags: 0
