@@ -6,8 +6,10 @@ public static class Constants
     public const float minCameraOrthoSize = 1.0f;
     public const float maxCameraOrthoSize = 20.0f;
 
-    // Map Dimensions.
+    // Map constants.
     public const float mapRangeSize = 20.0f;
+    public const float minPlanetDistance = 2.0f;
+    public const int numPlanets = 60;
 
     // Planetary capacity.
     public const int defaultShipCapacity = 100;

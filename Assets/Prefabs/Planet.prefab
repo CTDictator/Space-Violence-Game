@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6620668923928165191}
   - component: {fileID: 9036741907190259147}
   - component: {fileID: 1872504297255405127}
+  - component: {fileID: 8277210492121995911}
   m_Layer: 0
   m_Name: Planet
   m_TagString: Untagged
@@ -99,9 +100,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ddc31902b28d46428513934744655d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseProductionRate: 0
+  productionRate: 0
   maxShipCapacity: 0
-  totalShips: 10
+  totalShips: 0
 --- !u!114 &1872504297255405127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,8 +116,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalShipsText: {fileID: 930563612222232648}
-  planetType: 0
+  planetType: 7
   planetModifiers: 
+--- !u!58 &8277210492121995911
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403327051423785958}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &936214074233643990
 GameObject:
   m_ObjectHideFlags: 0
