@@ -5,7 +5,7 @@ using UnityEngine;
 // Manages a planets production of spaceships.
 public class PlanetaryProduction : MonoBehaviour
 {
-    [SerializeField] private float baseProductionRate;
+    [SerializeField] private float productionRate;
     [SerializeField] private int maxShipCapacity;
     [SerializeField] private int totalShips;
     
@@ -22,6 +22,8 @@ public class PlanetaryProduction : MonoBehaviour
     {
         planetaryInfo = GetComponent<PlanetaryInfo>();
         maxShipCapacity = AssignShipCapacity();
+        productionRate = AssignProductionRate();
+        totalShips = AssignTotalShips();
     }
 
     // Produce ships in a logarithmic scale, slowing as the total ships approaches max capacity.
@@ -33,7 +35,7 @@ public class PlanetaryProduction : MonoBehaviour
     // Produce a ship based on its production rate.
     private void ProduceShip()
     {
-        produceAShip += Time.deltaTime * baseProductionRate;
+        produceAShip += Time.deltaTime * productionRate;
         // A new ship is made when the timer reaches 1 and don't exceed capacity.
         if (produceAShip >= 1.0f && totalShips < maxShipCapacity)
         {
@@ -109,5 +111,17 @@ public class PlanetaryProduction : MonoBehaviour
             }
         }
         return capacity;
+    }
+
+    // Production rate is the time it takes from empty to full in a certain time period.
+    private float AssignProductionRate()
+    {
+        return maxShipCapacity / Constants.timeToFullProduction;
+    }
+
+    // Randomly roll the starting defenses of the planet.
+    private int AssignTotalShips()
+    {
+        return Random.Range(Constants.minimumCapacity, maxShipCapacity + 1);
     }
 }

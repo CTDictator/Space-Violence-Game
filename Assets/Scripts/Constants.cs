@@ -1,6 +1,14 @@
 // Constants used across the game.
 public static class Constants
 {
+    // Camera constants.
+    public const float cameraSpeed = 3.0f;
+    public const float minCameraOrthoSize = 1.0f;
+    public const float maxCameraOrthoSize = 20.0f;
+
+    // Map Dimensions.
+    public const float mapRangeSize = 20.0f;
+
     // Planetary capacity.
     public const int defaultShipCapacity = 100;
     public const int randomShipCapacityRange = 30;
@@ -19,4 +27,7 @@ public static class Constants
     // Planetary modifiers
     public const int maxAllowedModifiers = 3;
     public const int maxModifierCategories = 9;
+
+    // Planetary production rate.
+    public const float timeToFullProduction = 30.0f;
 }
