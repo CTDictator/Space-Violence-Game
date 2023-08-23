@@ -1,10 +1,11 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    private Camera mainCamera;
+    private CinemachineVirtualCamera mainCamera;
     private float horizontalMove;
     private float verticalMove;
     private float scrollMove;
@@ -12,7 +13,7 @@ public class CameraController : MonoBehaviour
     // Reference the camera component.
     private void Start()
     {
-        mainCamera = GetComponent<Camera>();
+        mainCamera = GetComponent<CinemachineVirtualCamera>();
     }
 
     // Move the camera based on the controls.
@@ -28,19 +29,29 @@ public class CameraController : MonoBehaviour
     // Use the horizontal/vertical inputs to move the camera along the XY axis.
     private void XYCameraMovement()
     {
-        horizontalMove = Input.GetAxis("Horizontal") * Time.deltaTime 
-            * Constants.cameraSpeed * mainCamera.orthographicSize;
+        horizontalMove = Input.GetAxis("Horizontal") * Time.deltaTime
+            * Constants.cameraSpeed * mainCamera.m_Lens.OrthographicSize;
         verticalMove = Input.GetAxis("Vertical") * Time.deltaTime 
-            * Constants.cameraSpeed * mainCamera.orthographicSize;
+            * Constants.cameraSpeed * mainCamera.m_Lens.OrthographicSize;
         transform.Translate(horizontalMove, verticalMove, 0.0f);
+        LockCameraBoundaries();
+    }
+
+    // Lock the camera movement within map boundaries - orthographic size.
+    private void LockCameraBoundaries()
+    {
+        float newClamp = Constants.camRangeSize - mainCamera.m_Lens.OrthographicSize;
+        float newX = Mathf.Clamp(transform.position.x, -newClamp, newClamp);
+        float newY = Mathf.Clamp(transform.position.y, -newClamp, newClamp);
+        transform.position = new(newX, newY, transform.position.z);
     }
 
     // Use the mouse wheel to zoom in and out on the map.
     private void ZoomCameraMovement()
     {
         scrollMove = Input.GetAxis("Mouse ScrollWheel");
-        mainCamera.orthographicSize -= scrollMove * mainCamera.orthographicSize;
-        mainCamera.orthographicSize = Mathf.Clamp(mainCamera.orthographicSize,
-            Constants.minCameraOrthoSize, Constants.maxCameraOrthoSize);
+        mainCamera.m_Lens.OrthographicSize -= scrollMove * mainCamera.m_Lens.OrthographicSize;
+        mainCamera.m_Lens.OrthographicSize = Mathf.Clamp(mainCamera.m_Lens.OrthographicSize,
+        Constants.minCameraOrthoSize, Constants.maxCameraOrthoSize) ;
     }
 }

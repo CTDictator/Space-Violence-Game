@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 // Instantiate a defined set of planets into a limited area of space.
 public class MapSetupManager : MonoBehaviour
 {
     [SerializeField] private GameObject planet;
+    [SerializeField] private Transform container;
     private Vector3 randomLocation;
 
     // Generate worlds on start.
@@ -30,8 +32,9 @@ public class MapSetupManager : MonoBehaviour
         {
             yield return null;
             randomLocation = NewRandomLocation();
-        } while (Physics2D.OverlapCircle(randomLocation, Constants.minPlanetDistance));
-        Instantiate(planet, randomLocation, Quaternion.identity);
+        } while (Physics2D.OverlapCircle(randomLocation, Constants.minPlanetDistance, 
+            LayerMask.NameToLayer("Confiner")));
+        Instantiate(planet, randomLocation, Quaternion.identity, container);
         yield return null;
     }
 

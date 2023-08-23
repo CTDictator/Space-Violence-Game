@@ -4,10 +4,11 @@ public static class Constants
     // Camera constants.
     public const float cameraSpeed = 3.0f;
     public const float minCameraOrthoSize = 1.0f;
-    public const float maxCameraOrthoSize = 20.0f;
+    public const float maxCameraOrthoSize = 10.0f;
 
     // Map constants.
     public const float mapRangeSize = 20.0f;
+    public const float camRangeSize = mapRangeSize + 1.0f;
     public const float minPlanetDistance = 2.0f;
     public const int numPlanets = 60;
 
