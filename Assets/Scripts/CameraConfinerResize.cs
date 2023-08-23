@@ -16,7 +16,6 @@ public class CameraConfinerResize : MonoBehaviour
     // Resize the camera boundaries based on the map dimensions.
     public void ResizeCameraBounds()
     {
-        //Debug.Log("ResizingCalled " + polygonCollider.points[0]);
         polygonCollider.points = new[] 
         {
             new Vector2(-Constants.camRangeSize, -Constants.camRangeSize),

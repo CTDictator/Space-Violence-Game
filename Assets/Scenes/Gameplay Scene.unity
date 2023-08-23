@@ -733,6 +733,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planet: {fileID: 403327051423785958, guid: bc388e4e33046df4382ed9539829d267, type: 3}
   container: {fileID: 176142552}
+  planets: []
 --- !u!4 &1737212347
 Transform:
   m_ObjectHideFlags: 0

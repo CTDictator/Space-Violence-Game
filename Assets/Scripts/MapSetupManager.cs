@@ -10,6 +10,8 @@ public class MapSetupManager : MonoBehaviour
     [SerializeField] private Transform container;
     private Vector3 randomLocation;
 
+    public List<GameObject> planets = new List<GameObject>();
+
     // Generate worlds on start.
     private void Start()
     {
@@ -34,7 +36,8 @@ public class MapSetupManager : MonoBehaviour
             randomLocation = NewRandomLocation();
         } while (Physics2D.OverlapCircle(randomLocation, Constants.minPlanetDistance, 
             LayerMask.NameToLayer("Confiner")));
-        Instantiate(planet, randomLocation, Quaternion.identity, container);
+        // Add the new planet to the list of worlds.
+        CreateNewWorld();
         yield return null;
     }
 
@@ -43,5 +46,12 @@ public class MapSetupManager : MonoBehaviour
     {
         return new(Random.Range(-Constants.mapRangeSize, Constants.mapRangeSize),
                 Random.Range(-Constants.mapRangeSize, Constants.mapRangeSize), 0.0f);
+    }
+
+    // Create the new planet and add it to the list for referencing.
+    private void CreateNewWorld()
+    {
+        GameObject newPlanet = Instantiate(planet, randomLocation, Quaternion.identity, container);
+        planets.Add(newPlanet);
     }
 }
