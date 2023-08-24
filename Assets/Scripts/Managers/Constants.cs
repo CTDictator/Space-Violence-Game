@@ -12,6 +12,10 @@ public static class Constants
     public const float minPlanetDistance = 2.0f;
     public const int numPlanets = 60;
 
+    // Planetary name.
+    public const int minSyllables = 2;
+    public const int maxSyllables = 3;
+
     // Planetary capacity.
     public const int defaultShipCapacity = 100;
     public const int randomShipCapacityRange = 30;

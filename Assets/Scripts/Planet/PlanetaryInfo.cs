@@ -5,18 +5,25 @@ using UnityEngine;
 
 // Display all information about the planet to the user.
 public class PlanetaryInfo : MonoBehaviour
-{
+{   
+    [SerializeField] private RandomNameGenerator rng;
     [SerializeField] private TextMeshProUGUI totalShipsText;
+
+    [SerializeField] private string planetName;
+    [SerializeField] private GameObject empireOwner;
     [SerializeField] private PlanetTypes planetType;
     [SerializeField] private PlanetModifiers[] planetModifiers;
 
     private PlanetaryProduction planetaryProduction;
 
+    public string Name { get { return planetName; } }
     public PlanetTypes PlanetType { get { return planetType; } }
     public PlanetModifiers[] PlanetModifier { get { return planetModifiers; } }
 
     private void Awake()
     {
+        // Assign a name.
+        planetName = rng.GenerateRandomPlanetName();
         // A planet always has a type, selects one at random.
         planetType = (PlanetTypes)Random.Range(0, (int)PlanetTypes.max_planet_types);
         // Can have 1-3 modifiers.
