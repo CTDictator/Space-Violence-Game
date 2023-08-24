@@ -1,6 +1,13 @@
-// Constants used across the game.
-public static class Constants
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Constants
 {
+    // Planet Name Generator.
+    public const int minSyllables = 2;
+    public const int maxSyllables = 3;
+
     // Camera constants.
     public const float cameraSpeed = 3.0f;
     public const float minCameraOrthoSize = 1.0f;
@@ -11,10 +18,6 @@ public static class Constants
     public const float camRangeSize = mapRangeSize + 1.0f;
     public const float minPlanetDistance = 2.0f;
     public const int numPlanets = 60;
-
-    // Planetary name.
-    public const int minSyllables = 2;
-    public const int maxSyllables = 3;
 
     // Planetary capacity.
     public const int defaultShipCapacity = 100;
