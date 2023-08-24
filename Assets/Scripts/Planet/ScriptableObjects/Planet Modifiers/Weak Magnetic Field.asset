@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23e3eac74e4301440940e06c747dbc04, type: 3}
+  m_Name: Weak Magnetic Field
+  m_EditorClassIdentifier: 
+  modifierName: Weak Magnetic Field
+  modifierDescription: This planet has a fairly weak magnetic field. Ship equipment
+    here suffer from less malfunctions.
+  planetCapacityModifier: 10
+  mutuallyExclusiveModifier: {fileID: 11400000, guid: c4f8eb5320a231a49823e698ed8e5f45, type: 2}

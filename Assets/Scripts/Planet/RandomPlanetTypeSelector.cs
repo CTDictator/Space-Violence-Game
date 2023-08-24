@@ -6,11 +6,11 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ScriptableObjects/RandomPlanetTypeSelector")]
 public class RandomPlanetTypeSelector : ScriptableObject
 {
-    [SerializeField] private List<PlanetType> planetTypes;
+    [SerializeField] private PlanetType[] planetTypes;
 
     public PlanetType SelectRandomPlanetType()
     {
-        int index = Random.Range(0, planetTypes.Count);
+        int index = Random.Range(0, planetTypes.Length);
         return planetTypes[index];
     }
 }

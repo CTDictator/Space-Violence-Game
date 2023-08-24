@@ -36,6 +36,8 @@ public class Constants
 
     // Planetary modifiers
     public const int maxAllowedModifiers = 3;
+    public const int minAllowedModifiers = 1;
+
     public const int maxModifierCategories = 9;
 
     // Planetary production rate.

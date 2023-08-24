@@ -1664,7 +1664,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetName: 
+  planetType: {fileID: 0}
+  planetModifiers: []
   planetNameGenerator: {fileID: 11400000, guid: 9566a90f93136e047b73fcd1fe649029, type: 2}
+  planetTypeSelector: {fileID: 11400000, guid: 94cd0d841018c0648a3b4db23f9a7f21, type: 2}
+  planetModifierSelector: {fileID: 11400000, guid: e8fa2557e1993d64aa2737eb9accb3d0, type: 2}
 --- !u!212 &1084596520
 SpriteRenderer:
   m_ObjectHideFlags: 0
