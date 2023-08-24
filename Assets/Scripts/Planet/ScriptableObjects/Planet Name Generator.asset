@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da2a471732307cc4ea2add03e2ce604c, type: 3}
-  m_Name: Random Name Generator
+  m_Name: Planet Name Generator
   m_EditorClassIdentifier: 
   syllable:
   - ques

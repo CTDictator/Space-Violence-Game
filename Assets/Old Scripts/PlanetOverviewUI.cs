@@ -25,6 +25,7 @@ public class PlanetOverviewUI : MonoBehaviour
     {
         UpdatePlanetName();
         UpdatePlanetType();
+        UpdatePlanetCapacity();
     }
 
     // Updates the name of the world onto the UI.
@@ -71,5 +72,10 @@ public class PlanetOverviewUI : MonoBehaviour
         planetType.text = typeName;
     }
 
-
+    // Display the current capacity and the maximum capacity.
+    public void UpdatePlanetCapacity()
+    {
+        planetCapacity.text = PS.selectedPlanet.GetComponent<PlanetaryProduction>().TotalShips
+            + "/" + PS.selectedPlanet.GetComponent<PlanetaryProduction>().MaxCapacity;
+    }
 }

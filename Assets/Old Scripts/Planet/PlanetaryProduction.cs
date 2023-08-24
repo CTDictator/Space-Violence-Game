@@ -8,14 +8,13 @@ public class PlanetaryProduction : MonoBehaviour
     [SerializeField] private float productionRate;
     [SerializeField] private int maxShipCapacity;
     [SerializeField] private int totalShips;
-    
+
+    private GameObject playerEmpire;
     private PlanetaryInfo planetaryInfo;
     private float produceAShip;
 
-    public int TotalShips
-    {
-        get { return totalShips; }
-    }
+    public int MaxCapacity { get { return maxShipCapacity; } }
+    public int TotalShips { get { return totalShips; } }
 
     // Reference the planetary production script.
     private void Start()
@@ -24,6 +23,7 @@ public class PlanetaryProduction : MonoBehaviour
         maxShipCapacity = AssignShipCapacity();
         productionRate = AssignProductionRate();
         totalShips = AssignTotalShips();
+        playerEmpire = GameObject.Find("Player Empire");
     }
 
     // Produce ships in a logarithmic scale, slowing as the total ships approaches max capacity.
@@ -43,6 +43,7 @@ public class PlanetaryProduction : MonoBehaviour
             produceAShip = 0.0f;
             // Update the UI counter on the planet.
             planetaryInfo.UpdateTotalShipsText();
+            playerEmpire.GetComponent<PlanetOverviewUI>().UpdatePlanetCapacity();
         }
     }
 
