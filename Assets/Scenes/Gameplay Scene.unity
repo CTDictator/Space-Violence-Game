@@ -285,8 +285,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1737212347}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &194023304
@@ -526,78 +525,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 266799239}
   m_CullTransparentMesh: 1
---- !u!1 &502301405
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 502301407}
-  - component: {fileID: 502301408}
-  - component: {fileID: 502301409}
-  m_Layer: 0
-  m_Name: Player Empire
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &502301407
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 502301405}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &502301408
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 502301405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d58fcfbd2a2960469b94106b1a9cd10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 519420031}
-  selectedPlanet: {fileID: 0}
---- !u!114 &502301409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 502301405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5151a0798547417449caf47e3a64a6d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  planetUIInfoPanel: {fileID: 560914452}
-  planetName: {fileID: 88014007}
-  planetType: {fileID: 1923753298}
-  planetCapacity: {fileID: 677200435}
-  planetProduction: {fileID: 796015375}
-  planetTraits:
-  - {fileID: 1807979526}
-  - {fileID: 1949788662}
-  - {fileID: 1755421423}
-  planetTraitsInfo:
-  - {fileID: 1359775289}
-  - {fileID: 1533276690}
-  - {fileID: 266799241}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1677,8 +1604,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21402610c7d8ae24cb7d8afaa478ca7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  empireColour: {fileID: 0}
+  empireName: 
+  empireColor: {fileID: 0}
+  controlledPlanets: []
   empireColourSelector: {fileID: 11400000, guid: 541f8661a087a584bb03a6b836f9f9ae, type: 2}
+  empireNameGenerator: {fileID: 11400000, guid: f6b7bf6c6ad241c4daa8157e3eb5216c, type: 2}
 --- !u!1 &1359775287
 GameObject:
   m_ObjectHideFlags: 0
@@ -2081,53 +2011,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1533276688}
   m_CullTransparentMesh: 1
---- !u!1 &1737212345
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1737212347}
-  - component: {fileID: 1737212346}
-  m_Layer: 0
-  m_Name: Map Setup Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1737212346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1737212345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ce7ba764f0d58d439b3bd11c084995d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  planet: {fileID: 403327051423785958, guid: bc388e4e33046df4382ed9539829d267, type: 3}
-  container: {fileID: 176142552}
-  planets: []
---- !u!4 &1737212347
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1737212345}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 176142552}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1755421421
 GameObject:
   m_ObjectHideFlags: 0
@@ -2664,6 +2547,66 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1949788660}
   m_CullTransparentMesh: 1
+--- !u!1 &2013289222
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2013289224}
+  - component: {fileID: 2013289223}
+  - component: {fileID: 2013289225}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2013289223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013289222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dee968e99f2175f4e831e51f034f2273, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planet: {fileID: 2790851389425042260, guid: 2d13a10b00b16ce4f93e577d506adb0d, type: 3}
+  container: {fileID: 176142552}
+--- !u!4 &2013289224
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013289222}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2013289225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013289222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16a07046aedfef943900ce79e972d68b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planets: []
 --- !u!1 &2014548562
 GameObject:
   m_ObjectHideFlags: 0
@@ -2754,63 +2697,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c0c8a7b2a60e344eb62001467f1f63d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &3427228681113959977
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2790851389425042260, guid: 2d13a10b00b16ce4f93e577d506adb0d, type: 3}
-      propertyPath: m_Name
-      value: Planet
-      objectReference: {fileID: 0}
-    - target: {fileID: 8751189066996570042, guid: 2d13a10b00b16ce4f93e577d506adb0d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8751189066996570042, guid: 2d13a10b00b16ce4f93e577d506adb0d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8751189066996570042, guid: 2d13a10b00b16ce4f93e577d506adb0d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8751189066996570042, guid: 2d13a10b00b16ce4f93e577d506adb0d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8751189066996570042, guid: 2d13a10b00b16ce4f93e577d506adb0d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8751189066996570042, guid: 2d13a10b00b16ce4f93e577d506adb0d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8751189066996570042, guid: 2d13a10b00b16ce4f93e577d506adb0d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8751189066996570042, guid: 2d13a10b00b16ce4f93e577d506adb0d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8751189066996570042, guid: 2d13a10b00b16ce4f93e577d506adb0d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8751189066996570042, guid: 2d13a10b00b16ce4f93e577d506adb0d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2d13a10b00b16ce4f93e577d506adb0d, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2819,7 +2705,6 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 176142552}
   - {fileID: 979500325}
-  - {fileID: 502301407}
   - {fileID: 1083162478}
-  - {fileID: 3427228681113959977}
   - {fileID: 1224957811}
+  - {fileID: 2013289224}

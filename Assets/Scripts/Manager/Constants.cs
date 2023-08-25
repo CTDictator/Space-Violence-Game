@@ -32,6 +32,9 @@ public static class Constants
     public const float minPlanetDistance = 2.0f;
     public const int numPlanets = 60;
 
+    // Selection constants.
+    public const float minDragDistance = 40.0f;
+
     //---
 
     public const int greatHabitabilityScore = 50;

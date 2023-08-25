@@ -38,7 +38,7 @@ public class PlanetProperties : MonoBehaviour
     {
         PUI = GetComponent<PlanetUI>();
         AssignPlanetName();
-        planetType = planetTypeSelector.SelectRandomPlanetType();
+        AssignPlanetType();
         AssignPlanetModifiers();
         RollBaseCapacity();
         ModifyBaseCapacity();
@@ -46,6 +46,7 @@ public class PlanetProperties : MonoBehaviour
         AssignCurrentCapacity();
     }
 
+    // Change the values of the max capacity and the current capacity.
     private void Update()
     {
         UpdateProsperity();
@@ -59,6 +60,11 @@ public class PlanetProperties : MonoBehaviour
     {
         planetName = planetNameGenerator.GenerateRandomPlanetName();
         gameObject.name = planetName;
+    }
+
+    private void AssignPlanetType()
+    {
+        planetType = planetTypeSelector.SelectRandomPlanetType();
     }
 
     // Created a range of traits that do not conflict with each other.

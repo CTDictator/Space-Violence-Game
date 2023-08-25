@@ -49,6 +49,6 @@ public class MapStartup : MonoBehaviour
     // Create the new planet and add it to the list for referencing.
     private void CreateNewWorld()
     {
-        GameObject newPlanet = Instantiate(planet, randomLocation, Quaternion.identity, container);
+        Instantiate(planet, randomLocation, Quaternion.identity, container);
     }
 }
