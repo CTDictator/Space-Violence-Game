@@ -11,6 +11,9 @@ public class PlanetProperties : MonoBehaviour
     [SerializeField] private string planetName;
     [SerializeField] private PlanetType planetType;
     [SerializeField] private PlanetModifier[] planetModifiers;
+    [SerializeField] private int baseCapacity;
+    [SerializeField] private int modifiedCapacity;
+    [SerializeField] private int prosperity;
 
     public string Name { get { return planetName; } }
     public PlanetType Type { get {  return planetType; } }
@@ -27,6 +30,9 @@ public class PlanetProperties : MonoBehaviour
         planetName = planetNameGenerator.GenerateRandomPlanetName();
         planetType = planetTypeSelector.SelectRandomPlanetType();
         AssignPlanetModifiers();
+        RollBaseCapacity();
+        ModifyBaseCapacity();
+        AssignProsperityLimit();
     }
 
     // Created a range of traits that do not conflict with each other.
@@ -53,9 +59,38 @@ public class PlanetProperties : MonoBehaviour
             reroll = false;
             foreach (PlanetModifier modifier in planetModifiers)
             {
-                if (modifier == newMod) reroll = true;
+                // If the modifier already exists or mutually exclusive with another, reroll it.
+                if (modifier == newMod || modifier == newMod.MutuallyExclusiveModifier)
+                    reroll = true;
             }
         } while (reroll);
         return newMod;
+    }
+
+    // Roll a base capacity for the world using the default value and a random range.
+    private void RollBaseCapacity()
+    {
+        baseCapacity = Constants.defaultShipCapacity
+            + Random.Range(-Constants.randomShipCapacityRange, 
+            Constants.randomShipCapacityRange + 1);
+    }
+
+    // Modity the base value with all the planet modifiers and type.
+    private void ModifyBaseCapacity()
+    {
+        // Base capacity + planet type capacity.
+        modifiedCapacity = baseCapacity + planetType.CapacityModifier;
+        foreach (PlanetModifier modifier in planetModifiers)
+        {
+            modifiedCapacity += modifier.CapacityModifier;
+        }
+        // Grant the planet the minimum capacity if it goes below minimum.
+        if (modifiedCapacity < Constants.minimumCapacity)
+            modifiedCapacity = Constants.minimumCapacity;
+    }
+
+    private void AssignProsperityLimit()
+    {
+        prosperityLimit = modifiedCapacity / 2;
     }
 }

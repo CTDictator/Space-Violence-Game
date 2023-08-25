@@ -4,9 +4,20 @@ using UnityEngine;
 
 public class Constants
 {
-    // Planet Name Generator.
+    // Planet name generator.
     public const int minSyllables = 2;
     public const int maxSyllables = 3;
+
+    // Planetary modifiers.
+    public const int maxAllowedModifiers = 3;
+    public const int minAllowedModifiers = 1;
+
+    // Planetary capacity.
+    public const int defaultShipCapacity = 100;
+    public const int randomShipCapacityRange = 30;
+    public const int minimumCapacity = 20;
+
+    //---
 
     // Camera constants.
     public const float cameraSpeed = 3.0f;
@@ -19,11 +30,6 @@ public class Constants
     public const float minPlanetDistance = 2.0f;
     public const int numPlanets = 60;
 
-    // Planetary capacity.
-    public const int defaultShipCapacity = 100;
-    public const int randomShipCapacityRange = 30;
-    public const int minimumCapacity = 10;
-
     public const int greatHabitabilityScore = 50;
     public const int normalHabitabilityScore = 20;
     public const int poorHabitabilityScore = 0;
@@ -33,10 +39,6 @@ public class Constants
     public const int largePositiveMod = 30;
     public const int smallNegativeMod = -10;
     public const int largeNegativeMod = -30;
-
-    // Planetary modifiers
-    public const int maxAllowedModifiers = 3;
-    public const int minAllowedModifiers = 1;
 
     public const int maxModifierCategories = 9;
 
