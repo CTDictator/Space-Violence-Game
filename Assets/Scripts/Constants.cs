@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Constants
+public static class Constants
 {
     // Planet name generator.
     public const int minSyllables = 2;
@@ -25,14 +25,14 @@ public class Constants
     public const float minCameraOrthoSize = 1.0f;
     public const float maxCameraOrthoSize = 10.0f;
     public const float aspectRatio = 16.0f / 9.0f;
-
-    //---
+    public const float camRangeSize = mapRangeSize + 1.0f;
 
     // Map constants.
     public const float mapRangeSize = 20.0f;
-    public const float camRangeSize = mapRangeSize + 1.0f;
     public const float minPlanetDistance = 2.0f;
     public const int numPlanets = 60;
+
+    //---
 
     public const int greatHabitabilityScore = 50;
     public const int normalHabitabilityScore = 20;

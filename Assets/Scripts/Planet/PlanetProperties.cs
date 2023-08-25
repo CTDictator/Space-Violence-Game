@@ -21,10 +21,12 @@ public class PlanetProperties : MonoBehaviour
     [SerializeField] private float shipProductionRate;
     [SerializeField] private int currentCapacity;
     private float produceAShip;
+    private PlanetUI PUI;
 
     public string Name { get { return planetName; } }
     public PlanetType Type { get {  return planetType; } }
     public PlanetModifier[] Modifiers { get { return planetModifiers; } }
+    public int CurrentCapacity { get { return currentCapacity; } }
 
     [Header("References:")]
     [SerializeField] private RandomNameGenerator planetNameGenerator;
@@ -34,6 +36,7 @@ public class PlanetProperties : MonoBehaviour
     // Set up the starting values of each world.
     private void Start()
     {
+        PUI = GetComponent<PlanetUI>();
         planetName = planetNameGenerator.GenerateRandomPlanetName();
         planetType = planetTypeSelector.SelectRandomPlanetType();
         AssignPlanetModifiers();
@@ -161,6 +164,7 @@ public class PlanetProperties : MonoBehaviour
         if (produceAShip >= 1.0f)
         {
             currentCapacity++;
+            PUI.UpdateOnMapCapacityText();
             produceAShip = 0.0f;
         }
     }
