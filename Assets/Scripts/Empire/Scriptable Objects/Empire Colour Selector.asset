@@ -12,4 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e8d24b917b4bd6419e45ee2cdff8e54, type: 3}
   m_Name: Empire Colour Selector
   m_EditorClassIdentifier: 
-  empireColour: []
+  empireColour:
+  - {fileID: 11400000, guid: e72bb5cc2df90b74c9a883a16d2c2d3d, type: 2}
+  - {fileID: 11400000, guid: 4d358771a4e6cf84198097b83453d986, type: 2}
+  - {fileID: 11400000, guid: d3958435bf013274686f0b6f3beab8f8, type: 2}
+  - {fileID: 11400000, guid: 195675ffccbc1744088215263f357250, type: 2}
+  - {fileID: 11400000, guid: 9220ddf8f6cafb94eb3715b19231a1b2, type: 2}
+  - {fileID: 11400000, guid: 3360a3fd5fca8c1499ff446de38952c6, type: 2}
+  - {fileID: 11400000, guid: 58ab055f0bac9074d8a41b67fdb79a06, type: 2}
+  - {fileID: 11400000, guid: 65dc5b170d390b347853000e3a942048, type: 2}

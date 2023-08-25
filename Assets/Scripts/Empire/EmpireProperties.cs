@@ -6,14 +6,18 @@ using UnityEngine;
 public class EmpireProperties : MonoBehaviour
 {
     [Header("Properties:")]
-    [SerializeField] private EmpireColour empireColour;
+    [SerializeField] private string empireName;
+    [SerializeField] private EmpireColour empireColor;
+    [SerializeField] private GameObject[] controlledPlanets;
 
     [Header("References:")]
     [SerializeField] private RandomEmpireColourSelector empireColourSelector;
+    [SerializeField] private EmpireNameGenerator empireNameGenerator;
 
     // Setup for starting values of each empire.
     private void Start()
     {
-        empireColour = empireColourSelector.GetRandomEmpireColour();
+        empireColor = empireColourSelector.GetRandomEmpireColour();
+        empireName = empireNameGenerator.GenerateRandomEmpireName(empireColor.Name);
     }
 }

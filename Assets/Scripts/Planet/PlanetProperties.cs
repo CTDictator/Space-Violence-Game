@@ -37,7 +37,7 @@ public class PlanetProperties : MonoBehaviour
     private void Start()
     {
         PUI = GetComponent<PlanetUI>();
-        planetName = planetNameGenerator.GenerateRandomPlanetName();
+        AssignPlanetName();
         planetType = planetTypeSelector.SelectRandomPlanetType();
         AssignPlanetModifiers();
         RollBaseCapacity();
@@ -52,6 +52,13 @@ public class PlanetProperties : MonoBehaviour
         UpdateMaxCapacity();
         UpdateShipProductionRate();
         UpdateCurrentCapacity();
+    }
+
+    // rename the world using a random name as well as the clone game object.
+    private void AssignPlanetName()
+    {
+        planetName = planetNameGenerator.GenerateRandomPlanetName();
+        gameObject.name = planetName;
     }
 
     // Created a range of traits that do not conflict with each other.
@@ -144,7 +151,7 @@ public class PlanetProperties : MonoBehaviour
     // Assign a starting capacity between half the minimum and the base capacity.
     private void AssignCurrentCapacity()
     {
-        currentCapacity = Random.Range(Constants.minimumCapacity / 2, baseCapacity + 1);
+        currentCapacity = Random.Range(Constants.minimumCapacity / 2, modifiedCapacity + 1);
     }
 
     // Develop more ships until the worlds reached the maximum capacity.

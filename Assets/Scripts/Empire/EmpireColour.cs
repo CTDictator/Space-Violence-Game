@@ -10,5 +10,5 @@ public class EmpireColour : ScriptableObject
     [SerializeField] private string colourName;
 
     public Color Colour { get { return colour; } }
-    public string ColourName { get { return colourName; } }
+    public string Name { get { return colourName; } }
 }

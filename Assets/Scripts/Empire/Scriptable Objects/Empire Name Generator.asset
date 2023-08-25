@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f941aaeda2ffbdd4db2132e8b9b726e8, type: 3}
-  m_Name: Yellow
+  m_Script: {fileID: 11500000, guid: dbc92053d57340541824c41705a2dc40, type: 3}
+  m_Name: Empire Name Generator
   m_EditorClassIdentifier: 
-  colour: {r: 1, g: 1, b: 0, a: 0}
-  colourName: Yellow
+  empireName:
+  - '# Empire'
