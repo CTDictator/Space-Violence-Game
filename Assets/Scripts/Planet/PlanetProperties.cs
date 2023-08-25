@@ -13,7 +13,14 @@ public class PlanetProperties : MonoBehaviour
     [SerializeField] private PlanetModifier[] planetModifiers;
     [SerializeField] private int baseCapacity;
     [SerializeField] private int modifiedCapacity;
+    [Range(-1.0f, 1.0f)]
+    [SerializeField] private float prosperityLevel;
     [SerializeField] private int prosperity;
+    private int prosperityLimit;
+    [SerializeField] private int maxCapacity;
+    [SerializeField] private float shipProductionRate;
+    [SerializeField] private int currentCapacity;
+    private float produceAShip;
 
     public string Name { get { return planetName; } }
     public PlanetType Type { get {  return planetType; } }
@@ -33,6 +40,15 @@ public class PlanetProperties : MonoBehaviour
         RollBaseCapacity();
         ModifyBaseCapacity();
         AssignProsperityLimit();
+        AssignCurrentCapacity();
+    }
+
+    private void Update()
+    {
+        UpdateProsperity();
+        UpdateMaxCapacity();
+        UpdateShipProductionRate();
+        UpdateCurrentCapacity();
     }
 
     // Created a range of traits that do not conflict with each other.
@@ -89,8 +105,63 @@ public class PlanetProperties : MonoBehaviour
             modifiedCapacity = Constants.minimumCapacity;
     }
 
+    // Starting values of a planets prosperity.
     private void AssignProsperityLimit()
     {
         prosperityLimit = modifiedCapacity / 2;
+        prosperity = 0;
+        prosperityLevel = 0;
+    }
+
+    // Continuous update the prosperity of a world.
+    private void UpdateProsperity()
+    {
+        if (prosperityLevel < 1.0f)
+        {
+            prosperityLevel += Constants.prosperityGainRate * Time.deltaTime;
+            prosperity = (int)(prosperityLevel * prosperityLimit);
+        }     
+    }
+
+    // Continuous update of the max capacity of the world using prosperity.
+    private void UpdateMaxCapacity()
+    {
+        if (prosperityLevel < 1.0f) maxCapacity = modifiedCapacity + prosperity;
+    }
+
+    // Update the ship production rate based off the max capacity of a world.
+    private void UpdateShipProductionRate()
+    {
+        if (prosperityLevel < 1.0f)
+        {
+            shipProductionRate = maxCapacity / Constants.timeToFullProduction;
+        }
+    }
+
+    // Assign a starting capacity between half the minimum and the base capacity.
+    private void AssignCurrentCapacity()
+    {
+        currentCapacity = Random.Range(Constants.minimumCapacity / 2, baseCapacity + 1);
+    }
+
+    // Develop more ships until the worlds reached the maximum capacity.
+    private void UpdateCurrentCapacity()
+    {
+        if (currentCapacity < maxCapacity)
+        {
+            ProduceShips();
+        }
+    }
+
+    // Use a timer to produce ships using the ship production rate.
+    private void ProduceShips()
+    {
+        produceAShip += Time.deltaTime * shipProductionRate;
+        // A new ship is made when the timer reaches 1 and don't exceed capacity.
+        if (produceAShip >= 1.0f)
+        {
+            currentCapacity++;
+            produceAShip = 0.0f;
+        }
     }
 }

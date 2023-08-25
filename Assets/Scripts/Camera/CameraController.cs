@@ -40,9 +40,11 @@ public class CameraController : MonoBehaviour
     // Lock the camera movement within map boundaries - orthographic size.
     private void LockCameraBoundaries()
     {
-        float newClamp = Constants.camRangeSize - mainCamera.m_Lens.OrthographicSize;
-        float newX = Mathf.Clamp(transform.position.x, -newClamp, newClamp);
-        float newY = Mathf.Clamp(transform.position.y, -newClamp, newClamp);
+        float newClampY = Constants.camRangeSize - mainCamera.m_Lens.OrthographicSize;
+        float newClampX = Constants.camRangeSize - mainCamera.m_Lens.OrthographicSize
+            * Constants.aspectRatio;
+        float newX = Mathf.Clamp(transform.position.x, -newClampX, newClampX);
+        float newY = Mathf.Clamp(transform.position.y, -newClampY, newClampY);
         transform.position = new(newX, newY, transform.position.z);
     }
 
