@@ -19,5 +19,6 @@ public class EmpireProperties : MonoBehaviour
     {
         empireColor = empireColourSelector.GetRandomEmpireColour();
         empireName = empireNameGenerator.GenerateRandomEmpireName(empireColor.Name);
+        gameObject.name = empireName;
     }
 }

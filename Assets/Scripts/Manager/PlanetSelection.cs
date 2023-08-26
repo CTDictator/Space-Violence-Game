@@ -9,7 +9,7 @@ using UnityEngine.UIElements;
 public class PlanetSelection : MonoBehaviour
 {
     [SerializeField] private List<GameObject> planets;
-    private Vector3 p1, p2;
+    private Vector3 p1;
     private bool dragSelect;
     [SerializeField] private GameObject selectionBox;
 
@@ -68,23 +68,6 @@ public class PlanetSelection : MonoBehaviour
         }
     }
 
-    // The mouse click is not a drag. so just select the planet.
-    private void NonDragSelection()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Camera.main.WorldToScreenPoint(p1));
-        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction,
-            0.0f, LayerMask.NameToLayer("Confiner"));
-        if (hit.collider != null)
-        {
-            planets.Add(hit.collider.gameObject);
-            ShowAllSelections();
-        }
-        else
-        {
-            HideAllSelections();
-        }
-    }
-
     // Display all the worlds selected.
     private void ShowAllSelections()
     {
@@ -112,42 +95,41 @@ public class PlanetSelection : MonoBehaviour
         return point;
     }
 
+    // The mouse click is not a drag. so just select the planet.
+    private void NonDragSelection()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Camera.main.WorldToScreenPoint(p1));
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction,
+            0.0f, LayerMask.NameToLayer("Confiner"));
+        if (hit.collider != null)
+        {
+            planets.Add(hit.collider.gameObject);
+            ShowAllSelections();
+        }
+        else
+        {
+            HideAllSelections();
+        }
+    }
+
     // The mouse click is dragging, create a collider and select all worlds within it.
     private void DragSelection()
     {
-
-    }
-
-    /*
-    // Select planets to interact with.
-    private void SelectPlanets()
-    {
-        if (Input.GetMouseButtonDown(0))
+        Vector2 point = selectionBox.transform.position;
+        Vector2 size = selectionBox.transform.localScale;
+        Collider2D[] hits = Physics2D.OverlapBoxAll(point, size, 0.0f, 
+            LayerMask.NameToLayer("Confiner"));
+        if (hits.Length > 0)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction,
-                0.0f, LayerMask.NameToLayer("Confiner"));
-            if (hit.collider != null)
+            foreach (var hit in hits)
             {
-                UnselectPreviousPlanet();
-                selectedPlanet = hit.collider.gameObject;
-                selectedPlanet.GetComponent<PlanetUIInfo>().HighlightPlanet();
+                planets.Add(hit.gameObject);
             }
-            else
-            {
-                UnselectPreviousPlanet();
-            }
+            ShowAllSelections();
+        }
+        else
+        {
+            HideAllSelections();
         }
     }
-
-    // Unselect the previous planet selected if any.
-    private void UnselectPreviousPlanet()
-    {
-        if (selectedPlanet != null)
-        {
-            selectedPlanet.GetComponent<PlanetUIInfo>().DehighlightPlanet();
-            selectedPlanet = null;
-        }
-    }
-    */
 }

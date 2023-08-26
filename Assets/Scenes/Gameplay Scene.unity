@@ -1412,6 +1412,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &821433394
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 821433395}
+  m_Layer: 0
+  m_Name: Empires
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &821433395
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821433394}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &895079891
 GameObject:
   m_ObjectHideFlags: 0
@@ -1774,64 +1805,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1111214985}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 457783622}
   - {fileID: 819341039}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2013289224}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1224957810
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1224957811}
-  - component: {fileID: 1224957812}
-  m_Layer: 0
-  m_Name: Empire
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1224957811
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1224957810}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1224957812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1224957810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21402610c7d8ae24cb7d8afaa478ca7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  empireName: 
-  empireColor: {fileID: 0}
-  controlledPlanets: []
-  empireColourSelector: {fileID: 11400000, guid: 541f8661a087a584bb03a6b836f9f9ae, type: 2}
-  empireNameGenerator: {fileID: 11400000, guid: f6b7bf6c6ad241c4daa8157e3eb5216c, type: 2}
 --- !u!1 &1359775287
 GameObject:
   m_ObjectHideFlags: 0
@@ -2800,8 +2782,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee968e99f2175f4e831e51f034f2273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  empire: {fileID: 6202511323919716760, guid: 217e1a859bba2b54db29b4f63cf5306f, type: 3}
   planet: {fileID: 2790851389425042260, guid: 2d13a10b00b16ce4f93e577d506adb0d, type: 3}
-  container: {fileID: 176142552}
+  empireContainer: {fileID: 821433395}
+  planetContainer: {fileID: 176142552}
 --- !u!4 &2013289224
 Transform:
   m_ObjectHideFlags: 0
@@ -2814,7 +2798,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1111214986}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2013289225
@@ -2927,9 +2912,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 895079892}
   - {fileID: 619394802}
+  - {fileID: 821433395}
   - {fileID: 176142552}
   - {fileID: 979500325}
   - {fileID: 1083162478}
-  - {fileID: 1224957811}
   - {fileID: 2013289224}
-  - {fileID: 1111214986}

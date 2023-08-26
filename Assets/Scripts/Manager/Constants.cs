@@ -26,26 +26,11 @@ public static class Constants
     public const float maxCameraOrthoSize = 10.0f;
     public const float aspectRatio = 16.0f / 9.0f;
     public const float camRangeSize = mapRangeSize + 1.0f;
+    public const float minDragDistance = 1.0f;
 
     // Map constants.
     public const float mapRangeSize = 20.0f;
     public const float minPlanetDistance = 2.0f;
     public const int numPlanets = 60;
-
-    // Selection constants.
-    public const float minDragDistance = 1.0f;
-
-    //---
-
-    public const int greatHabitabilityScore = 50;
-    public const int normalHabitabilityScore = 20;
-    public const int poorHabitabilityScore = 0;
-    public const int awfulHabitabilityScore = -20;
-
-    public const int smallPositiveMod = 10;
-    public const int largePositiveMod = 30;
-    public const int smallNegativeMod = -10;
-    public const int largeNegativeMod = -30;
-
-    public const int maxModifierCategories = 9;
+    public const int numEmpires = 4;
 }

@@ -6,14 +6,26 @@ using UnityEngine;
 public class MapStartup : MonoBehaviour
 {
     [Header("References:")]
+    [SerializeField] private GameObject empire;
     [SerializeField] private GameObject planet;
-    [SerializeField] private Transform container;
+    [SerializeField] private Transform empireContainer;
+    [SerializeField] private Transform planetContainer;
     private Vector3 randomLocation;
 
     // Generate worlds on start.
     private void Start()
     {
+        GenerateAllEmpires();
         GenerateAllPlanets();
+    }
+
+    // Generate all the empires within the game.
+    private void GenerateAllEmpires()
+    {
+        for (int i = 0; i < Constants.numEmpires;  i++)
+        {
+            Instantiate(empire, Vector3.zero, Quaternion.identity, empireContainer);
+        }
     }
 
     // Generate the total number of planets within the maps size.
@@ -49,6 +61,6 @@ public class MapStartup : MonoBehaviour
     // Create the new planet and add it to the list for referencing.
     private void CreateNewWorld()
     {
-        Instantiate(planet, randomLocation, Quaternion.identity, container);
+        Instantiate(planet, randomLocation, Quaternion.identity, planetContainer);
     }
 }
