@@ -2763,6 +2763,8 @@ GameObject:
   - component: {fileID: 2013289224}
   - component: {fileID: 2013289223}
   - component: {fileID: 2013289225}
+  - component: {fileID: 2013289226}
+  - component: {fileID: 2013289227}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -2816,6 +2818,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planets: []
   selectionBox: {fileID: 819341037}
+--- !u!114 &2013289226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013289222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4da7dec8225a4fc4c9581e6a84f62ca7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planets: []
+--- !u!114 &2013289227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013289222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e615887943872704e969128bdcd75042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  empires: []
 --- !u!1 &2014548562
 GameObject:
   m_ObjectHideFlags: 0
