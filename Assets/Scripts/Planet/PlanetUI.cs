@@ -10,6 +10,7 @@ public class PlanetUI : MonoBehaviour
 
     [Header("References: ")]
     [SerializeField] private TextMeshProUGUI onMapCapacityText;
+    [SerializeField] private GameObject selectionRing;
 
     // Reference setup.
     private void Start()
@@ -21,5 +22,17 @@ public class PlanetUI : MonoBehaviour
     public void UpdateOnMapCapacityText()
     {
         onMapCapacityText.text = $"{PP.CurrentCapacity}";
+    }
+
+    // Reveal that the planet has been selected by the player.
+    public void ShowSelectionRing()
+    {
+        selectionRing.SetActive(true);
+    }
+
+    // Reveal that the planet has been selected by the player.
+    public void HideSelectionRing()
+    {
+        selectionRing.SetActive(false);
     }
 }
