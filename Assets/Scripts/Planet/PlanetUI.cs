@@ -11,6 +11,7 @@ public class PlanetUI : MonoBehaviour
     [Header("References: ")]
     [SerializeField] private TextMeshProUGUI onMapCapacityText;
     [SerializeField] private GameObject selectionRing;
+    [SerializeField] private GameObject empireBorderRing;
 
     // Reference setup.
     private void Start()
@@ -34,5 +35,15 @@ public class PlanetUI : MonoBehaviour
     public void HideSelectionRing()
     {
         selectionRing.SetActive(false);
+    }
+
+    // Change the colour of the border ring on the planet.
+    public void ChangeEmpireBorderColour()
+    {
+        if (PP.Empire != null)
+        {
+            empireBorderRing.GetComponent<SpriteRenderer>().color
+                = PP.Empire.GetComponent<EmpireProperties>().Colour.Colour;
+        }
     }
 }

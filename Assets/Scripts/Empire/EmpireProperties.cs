@@ -8,7 +8,8 @@ public class EmpireProperties : MonoBehaviour
     [Header("Properties:")]
     [SerializeField] private string empireName;
     [SerializeField] private EmpireColour empireColor;
-    [SerializeField] private GameObject[] controlledPlanets;
+    [SerializeField] private List<GameObject> controlledPlanets;
+    [SerializeField] private bool isNeutral;
 
     [Header("References:")]
     [SerializeField] private RandomEmpireColourSelector empireColourSelector;
@@ -20,7 +21,7 @@ public class EmpireProperties : MonoBehaviour
     // Setup for starting values of each empire.
     private void Awake()
     {
-        RollEmpireColour();
+        if (!isNeutral) RollEmpireColour();
     }
 
     // Select a new colour and rename it.
@@ -29,5 +30,11 @@ public class EmpireProperties : MonoBehaviour
         empireColor = empireColourSelector.GetRandomEmpireColour();
         empireName = empireNameGenerator.GenerateRandomEmpireName(empireColor.Name);
         gameObject.name = empireName;
+    }
+
+    // Assign a planet under their control.
+    public void ControlPlanet(GameObject planet)
+    {
+        controlledPlanets.Add(planet);
     }
 }

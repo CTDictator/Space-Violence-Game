@@ -11,6 +11,7 @@ public class PlanetProperties : MonoBehaviour
     [SerializeField] private string planetName;
     [SerializeField] private PlanetType planetType;
     [SerializeField] private PlanetModifier[] planetModifiers;
+    [SerializeField] GameObject empire;
     [SerializeField] private int baseCapacity;
     [SerializeField] private int modifiedCapacity;
     [Range(-1.0f, 1.0f)]
@@ -26,6 +27,7 @@ public class PlanetProperties : MonoBehaviour
     public string Name { get { return planetName; } }
     public PlanetType Type { get {  return planetType; } }
     public PlanetModifier[] Modifiers { get { return planetModifiers; } }
+    public GameObject Empire { get { return empire; } }
     public int CurrentCapacity { get { return currentCapacity; } }
 
     [Header("References:")]
@@ -40,6 +42,7 @@ public class PlanetProperties : MonoBehaviour
         AssignPlanetName();
         AssignPlanetType();
         AssignPlanetModifiers();
+        AssignNeutrality();
         RollBaseCapacity();
         ModifyBaseCapacity();
         AssignProsperityLimit();
@@ -180,5 +183,20 @@ public class PlanetProperties : MonoBehaviour
             PUI.UpdateOnMapCapacityText();
             produceAShip = 0.0f;
         }
+    }
+
+    // Assign the world to a fake empire called 'Neutral'.
+    private void AssignNeutrality()
+    {
+        empire = GameObject.Find("Neutral");
+        empire.GetComponent<EmpireProperties>().ControlPlanet(gameObject);
+        StartCoroutine(ChangeColour());
+    }
+
+    // Bandaid solution.
+    private IEnumerator ChangeColour()
+    {
+        yield return new WaitForEndOfFrame();
+        PUI.ChangeEmpireBorderColour();
     }
 }
