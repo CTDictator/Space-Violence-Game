@@ -52,10 +52,14 @@ public class PlanetProperties : MonoBehaviour
     // Change the values of the max capacity and the current capacity.
     private void Update()
     {
-        UpdateProsperity();
-        UpdateMaxCapacity();
-        UpdateShipProductionRate();
-        UpdateCurrentCapacity();
+        if (!empire.GetComponent<EmpireProperties>().Neutral)
+        {
+            UpdateProsperity();
+            UpdateMaxCapacity();
+            UpdateShipProductionRate();
+            UpdateCurrentCapacity();
+        }
+        PUI.UpdateOnMapCapacityText();
     }
 
     // rename the world using a random name as well as the clone game object.
@@ -180,7 +184,6 @@ public class PlanetProperties : MonoBehaviour
         if (produceAShip >= 1.0f)
         {
             currentCapacity++;
-            PUI.UpdateOnMapCapacityText();
             produceAShip = 0.0f;
         }
     }
@@ -193,10 +196,18 @@ public class PlanetProperties : MonoBehaviour
         StartCoroutine(ChangeColour());
     }
 
-    // Bandaid solution.
+    // Change the colour of the planet.
     private IEnumerator ChangeColour()
     {
         yield return new WaitForEndOfFrame();
         PUI.ChangeEmpireBorderColour();
+    }
+
+    // Change empire ownership.
+    public void ChangeEmpireOwner(GameObject newEmpire)
+    {
+        empire.GetComponent<EmpireProperties>().LosePlanetControl(gameObject);
+        empire = newEmpire;
+        StartCoroutine(ChangeColour());
     }
 }

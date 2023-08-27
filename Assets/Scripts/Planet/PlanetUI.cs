@@ -8,7 +8,7 @@ public class PlanetUI : MonoBehaviour
 {
     private PlanetProperties PP;
 
-    [Header("References: ")]
+    [Header("References:")]
     [SerializeField] private TextMeshProUGUI onMapCapacityText;
     [SerializeField] private GameObject selectionRing;
     [SerializeField] private GameObject empireBorderRing;

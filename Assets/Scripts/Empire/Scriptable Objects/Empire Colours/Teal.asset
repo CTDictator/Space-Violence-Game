@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f941aaeda2ffbdd4db2132e8b9b726e8, type: 3}
   m_Name: Teal
   m_EditorClassIdentifier: 
-  colour: {r: 0, g: 1, b: 1, a: 0}
+  colour: {r: 0, g: 1, b: 1, a: 1}
   colourName: Teal

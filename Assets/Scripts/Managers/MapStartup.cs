@@ -21,6 +21,7 @@ public class MapStartup : MonoBehaviour
         empireTracker = GetComponent<EmpireTracker>();
         GenerateAllEmpires();
         GenerateAllPlanets();
+        StartCoroutine(AssignAPlanetForEachEmpire());
     }
 
     // Generate all the empires within the game.
@@ -92,5 +93,32 @@ public class MapStartup : MonoBehaviour
     {
         GameObject newWorld = Instantiate(planet, randomLocation, Quaternion.identity, planetContainer);
         planetTracker.AddPlanet(newWorld);
+    }
+
+    // Take one of the worlds made at random and give it to an active empire.
+    private IEnumerator AssignAPlanetForEachEmpire()
+    {
+        yield return new WaitForSeconds(0.5f);
+        int index;
+        foreach (var empire in empireTracker.Empires)
+        {
+            bool reroll;
+            do
+            {
+                reroll = false;
+                index = Random.Range(0, planetTracker.Planets.Count);
+                // Confirm that the planet doesn't belong to another empire.
+                reroll = EnsureUniquePlanet(index);
+            } while (reroll);
+            empire.GetComponent<EmpireProperties>().ControlPlanet(planetTracker.Planets[index]);
+        }
+    }
+
+    // Reroll the planet if another empire owns the world that isn't neutral.
+    private bool EnsureUniquePlanet(int index)
+    {
+        GameObject planetOwner = planetTracker.Planets[index].GetComponent<PlanetProperties>().Empire;
+        if (!planetOwner.GetComponent<EmpireProperties>().Neutral) return true;
+        return false;
     }
 }

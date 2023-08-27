@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Selection Ring
+    uniqueID: 1375937495
+    locked: 0
+  - name: Drag Select
+    uniqueID: 4123496929
+    locked: 0
