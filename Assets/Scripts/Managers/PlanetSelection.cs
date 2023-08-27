@@ -24,6 +24,7 @@ public class PlanetSelection : MonoBehaviour
         MouseClickedDown();
         MouseClickedDrag();
         MouseClickedUp();
+        TargetSelected();
     }
 
     // Actions performed on mouse down.
@@ -101,13 +102,22 @@ public class PlanetSelection : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Camera.main.WorldToScreenPoint(p1));
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction,
             0.0f, LayerMask.NameToLayer("Confiner"));
+        // Confirm there is something that was hit.
         if (hit.collider != null)
         {
-            planets.Add(hit.collider.gameObject);
+            PlanetProperties planetHit = hit.collider.gameObject.GetComponent<PlanetProperties>();
+            bool isPlayer = planetHit.Empire.GetComponent<EmpireProperties>().Player;
+            // Confirm it belongs to the player.
+            if (isPlayer)
+            {
+                planets.Add(hit.collider.gameObject);
+            }
+            // Reveal the selection.
             ShowAllSelections();
         }
         else
         {
+            // Hide all selections.
             HideAllSelections();
         }
     }
@@ -119,17 +129,44 @@ public class PlanetSelection : MonoBehaviour
         Vector2 size = selectionBox.transform.localScale;
         Collider2D[] hits = Physics2D.OverlapBoxAll(point, size, 0.0f, 
             LayerMask.NameToLayer("Confiner"));
+        // Confirm something was hit.
         if (hits.Length > 0)
         {
             foreach (var hit in hits)
             {
-                planets.Add(hit.gameObject);
+                PlanetProperties planetHit = hit.gameObject.GetComponent<PlanetProperties>();
+                bool isPlayer = planetHit.Empire.GetComponent<EmpireProperties>().Player;
+                // Confirm the planet belongs to the player.
+                if (isPlayer)
+                {
+                    planets.Add(hit.gameObject);
+                }
             }
             ShowAllSelections();
         }
         else
         {
             HideAllSelections();
+        }
+    }
+
+    // Confirm a target for the player to attack once they have their worlds selected.
+    private void TargetSelected()
+    {
+        // Confirm there is at least 1 planet selected on right click.
+        if (Input.GetMouseButtonDown(1) && planets.Count > 0)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction,
+                0.0f, LayerMask.NameToLayer("Confiner"));
+            // If a target is hit, send a fleet to the target.
+            if (hit.collider != null)
+            {
+                foreach (var planet in planets)
+                {
+                    Debug.Log($"{planet} is attacking {hit.collider.gameObject}");
+                }
+            }
         }
     }
 }

@@ -33,4 +33,8 @@ public static class Constants
     public const float minPlanetDistance = 2.0f;
     public const int numPlanets = 60;
     public const int numEmpires = 4;
+
+    // Ship constants.
+    public const int shipStrength = 1;
+    public const float shipSpeed = 5.0f;
 }
