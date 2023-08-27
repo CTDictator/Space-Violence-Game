@@ -8,7 +8,10 @@ public class ShipProperties : MonoBehaviour
     [SerializeField] private GameObject empireOwner;
     [SerializeField] private GameObject target;
 
-    private void Update()
+    public GameObject Empire { get { return empireOwner; } }
+    public GameObject Target { get { return target; } }
+
+    private void FixedUpdate()
     {
         MoveToTarget();
     }
@@ -23,5 +26,17 @@ public class ShipProperties : MonoBehaviour
             // Move towards the target.
             transform.Translate(Constants.shipSpeed * Time.deltaTime * Vector3.up);
         }
+    }
+
+    // Change the target of the ship.
+    public void AcquireTarget(GameObject newTarget)
+    {
+        target = newTarget;
+    }
+
+    // Set the empire affiliation of the ship.
+    public void SetEmpireOwner(GameObject newEmpire)
+    {
+        empireOwner = newEmpire;
     }
 }

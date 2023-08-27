@@ -34,10 +34,13 @@ public class PlanetProperties : MonoBehaviour
     [SerializeField] private RandomNameGenerator planetNameGenerator;
     [SerializeField] private RandomPlanetTypeSelector planetTypeSelector;
     [SerializeField] private RandomPlanetModifierSelector planetModifierSelector;
+    [SerializeField] private GameObject ship;
+    private Transform shipContainer;
 
     // Set up the starting values of each world.
     private void Start()
     {
+        shipContainer = GameObject.Find("Ships").transform;
         PUI = GetComponent<PlanetUI>();
         AssignPlanetName();
         AssignPlanetType();
@@ -209,5 +212,67 @@ public class PlanetProperties : MonoBehaviour
         empire.GetComponent<EmpireProperties>().LosePlanetControl(gameObject);
         empire = newEmpire;
         StartCoroutine(ChangeColour());
+    }
+
+    // Send a fleet over to the target planet.
+    public void AttackPlanet(GameObject targetPlanet)
+    {
+        // Reduce the current capacity by half.
+        int fleetSize = currentCapacity / 2;
+        currentCapacity -= fleetSize;
+        StartCoroutine(SpawnShips(fleetSize, targetPlanet));
+    }
+
+    // Spawn a fleet of ships with a tiny delay between each ship.
+    private IEnumerator SpawnShips(int fleetSize, GameObject targetPlanet)
+    {
+        for (int i = 0; i < fleetSize; i++)
+        {
+            yield return new WaitForNextFrameUnit();
+            var newShip = Instantiate(ship, transform.position,
+                Quaternion.identity, shipContainer);
+            newShip.GetComponent<ShipProperties>().AcquireTarget(targetPlanet);
+            newShip.GetComponent<ShipProperties>().SetEmpireOwner(empire);
+        }
+        yield return null;
+    }
+
+    // Detect collision onto its target planet.
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        var shipProperties = collision.gameObject.GetComponent<ShipProperties>();
+        // Confirm the collision is its intended target.
+        if (shipProperties != null && shipProperties.Target == gameObject)
+        {
+            if (shipProperties.Empire != empire)
+            {
+                AssaultPlanet(shipProperties);
+            }
+            else
+            {
+                ReinforcePlanet(shipProperties);
+            }
+            Destroy(collision.gameObject);
+        }
+    }
+
+    // Destroy the planets defenses if it is a hostile world.
+    private void AssaultPlanet(ShipProperties shipProperties)
+    {
+        // Trade 1 for 1 damage.
+        currentCapacity -= Constants.shipStrength;
+        prosperity -= Constants.shipStrength;
+        // Check if the defenses of the world have been overwhelmed.
+        if (currentCapacity < 1)
+        {
+            shipProperties.Empire.GetComponent<EmpireProperties>().ControlPlanet(gameObject);
+        }
+    }
+
+    // Reinforce the planet if it is a friendly world.
+    private void ReinforcePlanet(ShipProperties shipProperties)
+    {
+        // Add 1 to the defenses unless it exceeds the games maximum capacity.
+        if (currentCapacity < maxCapacity) currentCapacity += Constants.shipStrength;
     }
 }

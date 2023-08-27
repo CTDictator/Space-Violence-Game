@@ -200,6 +200,7 @@ MonoBehaviour:
   planetNameGenerator: {fileID: 11400000, guid: 9566a90f93136e047b73fcd1fe649029, type: 2}
   planetTypeSelector: {fileID: 11400000, guid: 94cd0d841018c0648a3b4db23f9a7f21, type: 2}
   planetModifierSelector: {fileID: 11400000, guid: e8fa2557e1993d64aa2737eb9accb3d0, type: 2}
+  ship: {fileID: 6123774206229943124, guid: 89cbcdd960e83084788fa1648d38bf2f, type: 3}
 --- !u!114 &362255161831569198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,7 +245,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

@@ -12,6 +12,7 @@ public class PlanetSelection : MonoBehaviour
     private Vector3 p1;
     private bool dragSelect;
     [SerializeField] private GameObject selectionBox;
+    [SerializeField] private LayerMask layerMask;
 
     private void Update()
     {
@@ -100,8 +101,7 @@ public class PlanetSelection : MonoBehaviour
     private void NonDragSelection()
     {
         Ray ray = Camera.main.ScreenPointToRay(Camera.main.WorldToScreenPoint(p1));
-        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction,
-            0.0f, LayerMask.NameToLayer("Confiner"));
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, 0.0f, layerMask);
         // Confirm there is something that was hit.
         if (hit.collider != null)
         {
@@ -127,8 +127,7 @@ public class PlanetSelection : MonoBehaviour
     {
         Vector2 point = selectionBox.transform.position;
         Vector2 size = selectionBox.transform.localScale;
-        Collider2D[] hits = Physics2D.OverlapBoxAll(point, size, 0.0f, 
-            LayerMask.NameToLayer("Confiner"));
+        Collider2D[] hits = Physics2D.OverlapBoxAll(point, size, 0.0f, layerMask);
         // Confirm something was hit.
         if (hits.Length > 0)
         {
@@ -157,14 +156,13 @@ public class PlanetSelection : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && planets.Count > 0)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction,
-                0.0f, LayerMask.NameToLayer("Confiner"));
+            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, 0.0f, layerMask);
             // If a target is hit, send a fleet to the target.
             if (hit.collider != null)
             {
                 foreach (var planet in planets)
                 {
-                    Debug.Log($"{planet} is attacking {hit.collider.gameObject}");
+                    planet.GetComponent<PlanetProperties>().AttackPlanet(hit.collider.gameObject);
                 }
             }
         }
