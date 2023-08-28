@@ -12,6 +12,8 @@ public class EmpireProperties : MonoBehaviour
     [SerializeField] private bool isNeutral;
     [SerializeField] private bool isPlayer;
 
+    public List<GameObject> Planets { get { return controlledPlanets; } }
+
     [Header("References:")]
     [SerializeField] private RandomEmpireColourSelector empireColourSelector;
     [SerializeField] private EmpireNameGenerator empireNameGenerator;

@@ -37,4 +37,10 @@ public static class Constants
     // Ship constants.
     public const int shipStrength = 1;
     public const float shipSpeed = 5.0f;
+
+    // AI constants.
+    public const float aiCheckFrequency = 1.0f;
+    public const float planetScanRadius = 10.0f;
+    public const int minAttackers = 2;
+    public const int maxAttackers = 6;
 }

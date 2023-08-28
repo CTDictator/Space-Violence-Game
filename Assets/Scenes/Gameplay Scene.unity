@@ -678,7 +678,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -2987,6 +2987,7 @@ MonoBehaviour:
   planet: {fileID: 2790851389425042260, guid: 2d13a10b00b16ce4f93e577d506adb0d, type: 3}
   empireContainer: {fileID: 821433395}
   planetContainer: {fileID: 176142552}
+  cam: {fileID: 194023305}
 --- !u!4 &2013289224
 Transform:
   m_ObjectHideFlags: 0
@@ -3020,6 +3021,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 55
+  playerEmpire: {fileID: 1328294189}
 --- !u!114 &2013289226
 MonoBehaviour:
   m_ObjectHideFlags: 0

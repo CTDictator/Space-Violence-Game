@@ -13,6 +13,7 @@ public class PlanetSelection : MonoBehaviour
     private bool dragSelect;
     [SerializeField] private GameObject selectionBox;
     [SerializeField] private LayerMask layerMask;
+    [SerializeField] private GameObject playerEmpire;
 
     private void Update()
     {
@@ -22,10 +23,12 @@ public class PlanetSelection : MonoBehaviour
     // Manage how a player clicks the screen to target select.
     private void SelectPlanets()
     {
+        RemoveLostPlanets();
         MouseClickedDown();
         MouseClickedDrag();
         MouseClickedUp();
         TargetSelected();
+        SelectAll();
     }
 
     // Actions performed on mouse down.
@@ -164,6 +167,34 @@ public class PlanetSelection : MonoBehaviour
                 {
                     planet.GetComponent<PlanetProperties>().AttackPlanet(hit.collider.gameObject);
                 }
+            }
+        }
+    }
+
+    // Use a hotkey to select all player worlds.
+    private void SelectAll()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+        {
+            HideAllSelections();
+            var empire = playerEmpire.GetComponent<EmpireProperties>().Planets;
+            foreach (var planet in empire)
+            {
+                planets.Add(planet);
+            }
+            ShowAllSelections();
+        }
+    }
+
+    // If you happen to have lost a planet, unselect it.
+    private void RemoveLostPlanets()
+    {
+        foreach(var planet in planets)
+        {
+            if (!planet.GetComponent<PlanetProperties>().Empire.GetComponent<EmpireProperties>().Player)
+            {
+                planet.GetComponent<PlanetUI>().HideSelectionRing();
+                planets.Remove(planet);
             }
         }
     }

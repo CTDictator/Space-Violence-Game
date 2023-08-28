@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2863324429884744014}
   - component: {fileID: 3808729553493301771}
+  - component: {fileID: -1841772478442664632}
   m_Layer: 0
   m_Name: Empire
   m_TagString: Untagged
@@ -47,5 +48,27 @@ MonoBehaviour:
   empireName: 
   empireColor: {fileID: 0}
   controlledPlanets: []
+  isNeutral: 0
+  isPlayer: 0
   empireColourSelector: {fileID: 11400000, guid: 541f8661a087a584bb03a6b836f9f9ae, type: 2}
   empireNameGenerator: {fileID: 11400000, guid: f6b7bf6c6ad241c4daa8157e3eb5216c, type: 2}
+--- !u!114 &-1841772478442664632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6202511323919716760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ca4fd3642727e14d85ff8ccd6d1f678, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nearbyTargets: []
+  priorityTargets:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 55

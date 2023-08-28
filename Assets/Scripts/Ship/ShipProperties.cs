@@ -11,6 +11,12 @@ public class ShipProperties : MonoBehaviour
     public GameObject Empire { get { return empireOwner; } }
     public GameObject Target { get { return target; } }
 
+    // Remove the ship if it has no target.
+    private void Start()
+    {
+        if (target == null) Destroy(gameObject);
+    }
+
     private void FixedUpdate()
     {
         MoveToTarget();
@@ -38,5 +44,7 @@ public class ShipProperties : MonoBehaviour
     public void SetEmpireOwner(GameObject newEmpire)
     {
         empireOwner = newEmpire;
+        SpriteRenderer sprite = gameObject.GetComponent<SpriteRenderer>();
+        sprite.color = empireOwner.GetComponent<EmpireProperties>().Colour.Colour;
     }
 }

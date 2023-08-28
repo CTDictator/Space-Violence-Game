@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class MapStartup : MonoBehaviour
     [SerializeField] private GameObject planet;
     [SerializeField] private Transform empireContainer;
     [SerializeField] private Transform planetContainer;
+    [SerializeField] private CinemachineVirtualCamera cam;
     private PlanetTracker planetTracker;
     private EmpireTracker empireTracker;
     private Vector3 randomLocation;
@@ -98,9 +100,9 @@ public class MapStartup : MonoBehaviour
     // Take one of the worlds made at random and give it to an active empire.
     private IEnumerator AssignAPlanetForEachEmpire()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
         int index;
-        foreach (var empire in empireTracker.Empires)
+        foreach (var newEmpire in empireTracker.Empires)
         {
             bool reroll;
             do
@@ -110,7 +112,9 @@ public class MapStartup : MonoBehaviour
                 // Confirm that the planet doesn't belong to another empire.
                 reroll = EnsureUniquePlanet(index);
             } while (reroll);
-            empire.GetComponent<EmpireProperties>().ControlPlanet(planetTracker.Planets[index]);
+            newEmpire.GetComponent<EmpireProperties>().ControlPlanet(planetTracker.Planets[index]);
+            // Lock the camera onto the player homeworld.
+            StartCoroutine(ChangeCameraLocation(index, newEmpire));
         }
     }
 
@@ -120,5 +124,16 @@ public class MapStartup : MonoBehaviour
         GameObject planetOwner = planetTracker.Planets[index].GetComponent<PlanetProperties>().Empire;
         if (!planetOwner.GetComponent<EmpireProperties>().Neutral) return true;
         return false;
+    }
+
+    private IEnumerator ChangeCameraLocation(int index, GameObject newEmpire)
+    {
+        yield return new WaitForEndOfFrame();
+        if (newEmpire.GetComponent<EmpireProperties>().Player)
+        {
+            Vector3 camPos = planetTracker.Planets[index].transform.position;
+            cam.GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize = 1;
+            cam.transform.position = new(camPos.x, camPos.y, cam.transform.position.z);
+        }
     }
 }
