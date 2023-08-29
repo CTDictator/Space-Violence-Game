@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23e3eac74e4301440940e06c747dbc04, type: 3}
   m_Name: Densely Populated
   m_EditorClassIdentifier: 
-  modifierName: Sparcely Populated
+  modifierName: Densely Populated
   modifierDescription: This world has a very high population. Finding workers and
     crew of the ships here is very easy.
   planetCapacityModifier: 30

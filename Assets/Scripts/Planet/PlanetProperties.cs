@@ -31,6 +31,7 @@ public class PlanetProperties : MonoBehaviour
     public int CurrentCapacity { get { return currentCapacity; } }
     public int MaxCapacity { get { return maxCapacity; } }
     public float ShipProductionRate { get {  return shipProductionRate; } }
+    public int Prosperity { get { return prosperity; } }
 
     [Header("References:")]
     [SerializeField] private RandomNameGenerator planetNameGenerator;
@@ -39,10 +40,12 @@ public class PlanetProperties : MonoBehaviour
     [SerializeField] private ConquestMessageLog conquestMessageLog;
     [SerializeField] private GameObject ship;
     private Transform shipContainer;
+    private GameObject gameManager;
 
     // Set up the starting values of each world.
     private void Start()
     {
+        gameManager = GameObject.Find("Game Manager");
         shipContainer = GameObject.Find("Ships").transform;
         PUI = GetComponent<PlanetUI>();
         AssignPlanetName();
@@ -217,7 +220,9 @@ public class PlanetProperties : MonoBehaviour
         StartCoroutine(ChangeColour());
         if (empire != null && empire.GetComponent<EmpireProperties>().Player)
         {
-            Debug.Log(conquestMessageLog.PrintConquestOf(gameObject));
+            conquestMessageLog.PrintConquestOf(gameObject);
+            gameManager.GetComponent<ConquestTextLogger>().UpdateConquestLog();
+
         }
     }
 
@@ -268,7 +273,8 @@ public class PlanetProperties : MonoBehaviour
     {
         // Trade 1 for 1 damage.
         currentCapacity -= Constants.shipStrength;
-        prosperity -= Constants.shipStrength;
+        if (prosperity > -prosperityLimit) prosperity -= Constants.shipStrength;
+        prosperityLevel = (float)prosperity/prosperityLimit;
         // Check if the defenses of the world have been overwhelmed.
         if (currentCapacity < 1)
         {

@@ -20,6 +20,7 @@ public class EmpireProperties : MonoBehaviour
     [SerializeField] private RandomEmpireColourSelector empireColourSelector;
     [SerializeField] private EmpireNameGenerator empireNameGenerator;
     [SerializeField] private ConquestMessageLog conquestMessageLog;
+    private GameObject gameManager;
 
     public EmpireColour Colour { get { return empireColor; } }
     public string Name { get { return empireName; } }
@@ -34,6 +35,7 @@ public class EmpireProperties : MonoBehaviour
         isAlive = true;
         if (!isNeutral && !isPlayer) RollEmpireColour();
         StartCoroutine(MakeEmpireActive());
+        gameManager = GameObject.Find("Game Manager");
     }
 
     private void Update()
@@ -42,7 +44,9 @@ public class EmpireProperties : MonoBehaviour
         {
             isAlive = false;
             isActive = false;
-            Debug.Log(conquestMessageLog.PrintDefeatOfEmpire(gameObject));
+            conquestMessageLog.PrintDefeatOfEmpire(gameObject);
+            gameManager.GetComponent<ConquestTextLogger>().UpdateConquestLog();
+            if (isPlayer) gameManager.GetComponent<MapStartup>().ShowRestart();
         }
     }
 

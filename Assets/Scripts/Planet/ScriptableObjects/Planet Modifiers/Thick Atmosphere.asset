@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modifierName: Thick Atmosphere
   modifierDescription: This planet has a very thin atmosphere. This makes it slightly
-    easier to launch ships.
+    harder to launch ships.
   planetCapacityModifier: -10
   mutuallyExclusiveModifier: {fileID: 11400000, guid: a226a81a8ddf3094491e577438ae1b55, type: 2}

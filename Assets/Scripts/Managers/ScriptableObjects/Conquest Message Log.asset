@@ -21,3 +21,7 @@ MonoBehaviour:
   - The # of planet @ have been brought into our empire.
   - The # of planet @ is now rightfully under our control.
   insultGenerator: {fileID: 11400000, guid: 919a82510f45a2847a5219af9002e32a, type: 2}
+  conquestLogString:
+  - The Player Empire has been defeated.
+  - The uncouth savages of planet Zarbas have been conquered.
+  - The foul mongrels of planet Almgusdin have been subjucated.

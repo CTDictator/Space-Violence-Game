@@ -2,6 +2,7 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // Spawn in the planets and empires at the start of the game.
 public class MapStartup : MonoBehaviour
@@ -12,6 +13,7 @@ public class MapStartup : MonoBehaviour
     [SerializeField] private Transform empireContainer;
     [SerializeField] private Transform planetContainer;
     [SerializeField] private CinemachineVirtualCamera cam;
+    [SerializeField] private GameObject restartButton;
     private PlanetTracker planetTracker;
     private EmpireTracker empireTracker;
     private Vector3 randomLocation;
@@ -135,5 +137,17 @@ public class MapStartup : MonoBehaviour
             cam.GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize = 1;
             cam.transform.position = new(camPos.x, camPos.y, cam.transform.position.z);
         }
+    }
+
+    // Show the restart button on defeat of the player.
+    public void ShowRestart()
+    {
+        restartButton.SetActive(true);
+    }
+
+    // Restart the scene.
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(0);
     }
 }

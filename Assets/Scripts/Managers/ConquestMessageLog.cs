@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 // Print a message whenever a planet is conquered by the player.
@@ -11,8 +12,9 @@ public class ConquestMessageLog : ScriptableObject
     [SerializeField] private List<string> conqueredAPlanetString;
     [Header("References:")]
     [SerializeField] InsultGenerator insultGenerator;
+    public string[] conquestLogString = new string[3];
 
-    public string PrintConquestOf(GameObject planet)
+    public void PrintConquestOf(GameObject planet)
     {
         int index = Random.Range(0, conqueredAPlanetString.Count);
         string conquest = conqueredAPlanetString[index];
@@ -20,12 +22,16 @@ public class ConquestMessageLog : ScriptableObject
         string planetName = planet.GetComponent<PlanetProperties>().Name;
         conquest = conquest.Replace("#", insult);
         conquest = conquest.Replace("@", planetName);
-        return conquest;
+        conquestLogString[2] = conquestLogString[1];
+        conquestLogString[1] = conquestLogString[0];
+        conquestLogString[0] = conquest;
     }
 
-    public string PrintDefeatOfEmpire(GameObject empire)
+    public void PrintDefeatOfEmpire(GameObject empire)
     {
         string empireName = empire.GetComponent<EmpireProperties>().Name;
-        return $"The {empireName} has been defeated.";
+        conquestLogString[2] = conquestLogString[1];
+        conquestLogString[1] = conquestLogString[0];
+        conquestLogString[0] = $"The {empireName} has been defeated.";
     }
 }

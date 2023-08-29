@@ -106,8 +106,10 @@ public class EmpireAI : MonoBehaviour
                 attackingPlanets.Add(EP.Planets[randomWorld]);
             }
         }
-        // Then select a random target previously selected.
-        int randomTarget = Random.Range(0, priorityTargets.Length);
+        // Then select a random target previously selected unless small empire.
+        int randomTarget;
+        if (!allOrNothing) randomTarget = Random.Range(0, priorityTargets.Length);
+        else randomTarget = 0;
         // And then attack.
         foreach (var attacker in attackingPlanets)
         {

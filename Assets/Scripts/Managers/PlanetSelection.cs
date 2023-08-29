@@ -20,6 +20,8 @@ public class PlanetSelection : MonoBehaviour
     [SerializeField] private TextMeshProUGUI planetTypeText;
     [SerializeField] private TextMeshProUGUI planetCapacityText;
     [SerializeField] private TextMeshProUGUI planetProductionText;
+    [SerializeField] private TextMeshProUGUI empireOwnerText;
+    [SerializeField] private TextMeshProUGUI planetProsperityText;
     [SerializeField] private TextMeshProUGUI[] planetModifierNameText;
     [SerializeField] private TextMeshProUGUI[] planetModifierDescriptionText;
 
@@ -216,8 +218,10 @@ public class PlanetSelection : MonoBehaviour
         PlanetProperties SPP = selectedPlanet.transform.GetComponent<PlanetProperties>();
         planetNameText.text = SPP.Name;
         planetTypeText.text = SPP.Type.Type;
+        empireOwnerText.text = SPP.Empire.GetComponent<EmpireProperties>().Name;
         planetCapacityText.text = $"{SPP.CurrentCapacity}/{SPP.MaxCapacity}";
         planetProductionText.text = $"{SPP.ShipProductionRate.ToString("f1")} Ships/sec";
+        planetProsperityText.text = $"prosperity: {SPP.Prosperity}";
         foreach (var modName in planetModifierNameText) modName.text = string.Empty;
         foreach (var modDesc in planetModifierDescriptionText) modDesc.text = string.Empty;
         for (int i = 0; i < SPP.Modifiers.Length; i++)
