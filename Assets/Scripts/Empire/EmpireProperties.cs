@@ -11,22 +11,46 @@ public class EmpireProperties : MonoBehaviour
     [SerializeField] private List<GameObject> controlledPlanets;
     [SerializeField] private bool isNeutral;
     [SerializeField] private bool isPlayer;
+    [SerializeField] private bool isActive;
+    [SerializeField] private bool isAlive;
 
     public List<GameObject> Planets { get { return controlledPlanets; } }
 
     [Header("References:")]
     [SerializeField] private RandomEmpireColourSelector empireColourSelector;
     [SerializeField] private EmpireNameGenerator empireNameGenerator;
+    [SerializeField] private ConquestMessageLog conquestMessageLog;
 
     public EmpireColour Colour { get { return empireColor; } }
     public string Name { get { return empireName; } }
     public bool Neutral { get { return isNeutral; } }
     public bool Player { get { return isPlayer; } }
+    public bool IsAlive { get {  return isAlive; } }
+    public bool IsActive { get { return isActive; } }
 
     // Setup for starting values of each empire.
     private void Awake()
     {
+        isAlive = true;
         if (!isNeutral && !isPlayer) RollEmpireColour();
+        StartCoroutine(MakeEmpireActive());
+    }
+
+    private void Update()
+    {
+        if (controlledPlanets.Count == 0 && isActive)
+        {
+            isAlive = false;
+            isActive = false;
+            Debug.Log(conquestMessageLog.PrintDefeatOfEmpire(gameObject));
+        }
+    }
+
+    // Set the empire as active after a certain amount of time.
+    private IEnumerator MakeEmpireActive()
+    {
+        yield return new WaitForSeconds(3);
+        isActive = true;
     }
 
     // Select a new colour and rename it.

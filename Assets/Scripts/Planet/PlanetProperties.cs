@@ -29,11 +29,14 @@ public class PlanetProperties : MonoBehaviour
     public PlanetModifier[] Modifiers { get { return planetModifiers; } }
     public GameObject Empire { get { return empire; } }
     public int CurrentCapacity { get { return currentCapacity; } }
+    public int MaxCapacity { get { return maxCapacity; } }
+    public float ShipProductionRate { get {  return shipProductionRate; } }
 
     [Header("References:")]
     [SerializeField] private RandomNameGenerator planetNameGenerator;
     [SerializeField] private RandomPlanetTypeSelector planetTypeSelector;
     [SerializeField] private RandomPlanetModifierSelector planetModifierSelector;
+    [SerializeField] private ConquestMessageLog conquestMessageLog;
     [SerializeField] private GameObject ship;
     private Transform shipContainer;
 
@@ -212,6 +215,10 @@ public class PlanetProperties : MonoBehaviour
         empire.GetComponent<EmpireProperties>().LosePlanetControl(gameObject);
         empire = newEmpire;
         StartCoroutine(ChangeColour());
+        if (empire != null && empire.GetComponent<EmpireProperties>().Player)
+        {
+            Debug.Log(conquestMessageLog.PrintConquestOf(gameObject));
+        }
     }
 
     // Send a fleet over to the target planet.

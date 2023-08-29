@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23e3eac74e4301440940e06c747dbc04, type: 3}
   m_Name: Low Gravity
   m_EditorClassIdentifier: 
-  modifierName: 
+  modifierName: Low Gravity
   modifierDescription: This planet has an exceptionally low gravity field. This makes
     launching ships much less difficult.
   planetCapacityModifier: 30

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -14,10 +15,18 @@ public class PlanetSelection : MonoBehaviour
     [SerializeField] private GameObject selectionBox;
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private GameObject playerEmpire;
+    [SerializeField] private GameObject planetInfoUI;
+    [SerializeField] private TextMeshProUGUI planetNameText;
+    [SerializeField] private TextMeshProUGUI planetTypeText;
+    [SerializeField] private TextMeshProUGUI planetCapacityText;
+    [SerializeField] private TextMeshProUGUI planetProductionText;
+    [SerializeField] private TextMeshProUGUI[] planetModifierNameText;
+    [SerializeField] private TextMeshProUGUI[] planetModifierDescriptionText;
 
     private void Update()
     {
         SelectPlanets();
+
     }
 
     // Manage how a player clicks the screen to target select.
@@ -117,11 +126,13 @@ public class PlanetSelection : MonoBehaviour
             }
             // Reveal the selection.
             ShowAllSelections();
+            RevealInfoOfPlanet(hit.collider.gameObject);
         }
         else
         {
             // Hide all selections.
             HideAllSelections();
+            HideInfoOfPlanet();
         }
     }
 
@@ -197,5 +208,29 @@ public class PlanetSelection : MonoBehaviour
                 planets.Remove(planet);
             }
         }
+    }
+
+    // Show information about the planet selected.
+    private void RevealInfoOfPlanet(GameObject selectedPlanet)
+    {
+        PlanetProperties SPP = selectedPlanet.transform.GetComponent<PlanetProperties>();
+        planetNameText.text = SPP.Name;
+        planetTypeText.text = SPP.Type.Type;
+        planetCapacityText.text = $"{SPP.CurrentCapacity}/{SPP.MaxCapacity}";
+        planetProductionText.text = $"{SPP.ShipProductionRate.ToString("f1")} Ships/sec";
+        foreach (var modName in planetModifierNameText) modName.text = string.Empty;
+        foreach (var modDesc in planetModifierDescriptionText) modDesc.text = string.Empty;
+        for (int i = 0; i < SPP.Modifiers.Length; i++)
+        {
+            planetModifierNameText[i].text = SPP.Modifiers[i].Name;
+            planetModifierDescriptionText[i].text = SPP.Modifiers[i].Description;
+        }
+        planetInfoUI.SetActive(true);
+    }
+
+    // Hide the information about a planet.
+    private void HideInfoOfPlanet()
+    {
+        planetInfoUI.SetActive(false);
     }
 }

@@ -50,8 +50,11 @@ MonoBehaviour:
   controlledPlanets: []
   isNeutral: 0
   isPlayer: 0
+  isActive: 0
+  isAlive: 0
   empireColourSelector: {fileID: 11400000, guid: 541f8661a087a584bb03a6b836f9f9ae, type: 2}
   empireNameGenerator: {fileID: 11400000, guid: f6b7bf6c6ad241c4daa8157e3eb5216c, type: 2}
+  conquestMessageLog: {fileID: 11400000, guid: 3f39f66728b78084b96c3ff9dfcfc318, type: 2}
 --- !u!114 &-1841772478442664632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,6 +72,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  attackingPlanets: []
   layerMask:
     serializedVersion: 2
     m_Bits: 55

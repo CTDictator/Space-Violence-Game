@@ -115,6 +115,6 @@ public class EmpireAI : MonoBehaviour
         }
         // Then repeat the process at random intervals.
         float randomTimer = Random.Range(0.5f, 1.0f);
-        Invoke("AttackTarget", randomTimer);
+        if (EP.IsAlive) Invoke("AttackTarget", randomTimer);
     }
 }
